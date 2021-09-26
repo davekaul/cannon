@@ -10,22 +10,22 @@ public class CannonController : MonoBehaviour
     {
         Vector3 _targetPosition = Vector3.zero;
 
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.UpArrow))
         {
             _targetPosition += transform.forward * PositionMagnitude * Time.deltaTime;
         }
         
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.DownArrow))
         {
             _targetPosition -= transform.forward * PositionMagnitude * Time.deltaTime;
         }
         
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.LeftArrow))
         {
             _targetPosition -= transform.right * PositionMagnitude * Time.deltaTime;
         }
         
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.RightArrow))
         {
             _targetPosition += transform.right * PositionMagnitude * Time.deltaTime;
         }

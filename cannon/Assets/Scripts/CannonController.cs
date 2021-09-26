@@ -5,8 +5,17 @@ using UnityEngine;
 public class CannonController : MonoBehaviour
 {
     public float PositionMagnitude;
+    public float RotationMagnitude;
+
+    public Transform CannonBarrel;
 
     private void Update()
+    {
+        UpdateMovement();
+        UpdateCannonBarrelMovement();
+    }
+
+    private void UpdateMovement()
     {
         Vector3 _targetPosition = Vector3.zero;
 
@@ -14,17 +23,17 @@ public class CannonController : MonoBehaviour
         {
             _targetPosition += transform.forward * PositionMagnitude * Time.deltaTime;
         }
-        
+
         if (Input.GetKey(KeyCode.DownArrow))
         {
             _targetPosition -= transform.forward * PositionMagnitude * Time.deltaTime;
         }
-        
+
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             _targetPosition -= transform.right * PositionMagnitude * Time.deltaTime;
         }
-        
+
         if (Input.GetKey(KeyCode.RightArrow))
         {
             _targetPosition += transform.right * PositionMagnitude * Time.deltaTime;
@@ -35,4 +44,36 @@ public class CannonController : MonoBehaviour
             transform.Translate(_targetPosition);
         }
     }
+
+    private void UpdateCannonBarrelMovement()
+    {
+        Vector3 eularAngles = Vector3.zero;
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            eularAngles += Vector3.left * RotationMagnitude * Time.deltaTime;
+        }
+
+        if (Input.GetKey(KeyCode.S))    
+        {
+            eularAngles -= Vector3.left * RotationMagnitude * Time.deltaTime;
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            eularAngles += Vector3.forward * RotationMagnitude * Time.deltaTime;
+        }
+
+        if (Input.GetKey(KeyCode.D))
+        {
+            eularAngles -= Vector3.forward * RotationMagnitude * Time.deltaTime;
+        }
+
+        if (eularAngles.magnitude > 0f)
+        {            
+            var qTarget = Quaternion.Euler(eularAngles);
+            CannonBarrel.rotation *= qTarget;          
+        }
+    }
+
 }

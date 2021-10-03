@@ -6,13 +6,17 @@ public class CannonController : MonoBehaviour
 {
     public float PositionMagnitude;
     public float RotationMagnitude;
+    public float FireMagnitude;
 
     public Transform CannonBarrel;
+
+    public GameObject Cannonball;
 
     private void Update()
     {
         UpdateMovement();
         UpdateCannonBarrelMovement();
+        UpdateCannonball();
     }
 
     private void UpdateMovement()
@@ -73,6 +77,16 @@ public class CannonController : MonoBehaviour
         {            
             var qTarget = Quaternion.Euler(eularAngles);
             CannonBarrel.rotation *= qTarget;          
+        }
+    }
+
+    private void UpdateCannonball()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            var cannonBall = Instantiate(Cannonball, CannonBarrel.position, CannonBarrel.rotation);
+            var rigidbody = cannonBall.GetComponent<Rigidbody>();
+            rigidbody.AddForce(-CannonBarrel.up * FireMagnitude);
         }
     }
 

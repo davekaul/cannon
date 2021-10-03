@@ -367,5 +367,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5356623571311971694, guid: 50a2c33ed7278d74992a01b63b9a836f, type: 3}
+      propertyPath: Cannonball
+      value: 
+      objectReference: {fileID: 5062505257385378101, guid: 63ebc516cf380a24a954b809feeb0c9f, type: 3}
+    - target: {fileID: 5356623571311971694, guid: 50a2c33ed7278d74992a01b63b9a836f, type: 3}
+      propertyPath: FireMagnitude
+      value: 2000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50a2c33ed7278d74992a01b63b9a836f, type: 3}

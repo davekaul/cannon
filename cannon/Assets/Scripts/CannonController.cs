@@ -8,6 +8,9 @@ public class CannonController : MonoBehaviour
     public float RotationMagnitude;
     public float FireMagnitude;
 
+    [Range(1,100)]
+    public float ShiftMagnitude = 6.0f;
+
     public Transform CannonBarrel;
 
     public GameObject Cannonball;
@@ -73,6 +76,12 @@ public class CannonController : MonoBehaviour
             eularAngles -= Vector3.forward * RotationMagnitude * Time.deltaTime;
         }
 
+        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.LeftShift))
+        {
+            eularAngles *= ShiftMagnitude;
+        }
+
+
         if (eularAngles.magnitude > 0f)
         {            
             var qTarget = Quaternion.Euler(eularAngles);
@@ -86,7 +95,7 @@ public class CannonController : MonoBehaviour
         {
             var cannonBall = Instantiate(Cannonball, CannonBarrel.position, CannonBarrel.rotation);
             var rigidbody = cannonBall.GetComponent<Rigidbody>();
-            rigidbody.AddForce(-CannonBarrel.up * FireMagnitude);
+            rigidbody.AddForce(CannonBarrel.up * FireMagnitude);
         }
     }
 
